@@ -1,1 +1,8 @@
+title: DSC180A-Methodology-5
+tagline: Data Science Capstone
+description: Fall 2023 at UC San Diego
+author: Lisa Hwang
+baseurl: '/' # the subpath of your site, e.g. /blog
+exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
+
 theme: jekyll-theme-minimal
