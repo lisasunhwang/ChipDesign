@@ -6,7 +6,7 @@ baseurl: '/' # the subpath of your site, e.g. /blog
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
 
 # Theme settings
-remote_theme: just-the-docs/just-the-docs@v0.4.0.rc3
+# remote_theme: just-the-docs/just-the-docs@v0.4.0.rc3
 # remote_theme: just-the-docs/just-the-docs@v0.3.3
 color_scheme: bluecsd
 search_enabled: true
