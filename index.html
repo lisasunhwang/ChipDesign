@@ -5,16 +5,235 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="app.js" async></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Capstone</h1>
-    <h2>Abstract</h2>
-    <h2>Data</h2>
-    <h2>Background</h2>
-    <h2>Model</h2>
-    <h2>Results</h2>
-    <h2>Conclusion</h2>
-    <h2>Future Work</h2>
+    <section>
+        <h1>Netlist Congestion Prediction with Graph Attention Network</h1>
+    </section>
+    <section>
+        <div class="container reveal">
+            <h2>Abstract</h2>
+            <div class="text-container">
+                <div class="text-box">
+                    <p>In modern Very Large Scale Integration (VLSI) design, congestion poses a 
+                        significant threat to the development process of semiconductor chip 
+                        development. Currently, congestion is unknown until after placement and 
+                        routing steps in the design process. This is inefficient and costly, as 
+                        any weaknesses in the placement and routing process resulting in high 
+                        congestion must be reiterated to improve the quality of the design.
+                        In this work, we use a graph attention network (GAT) to predict the post
+                        -placement, pre-routing congestion levels in a netlist, in an attempt to 
+                        preemptively address potential issues. While we test our model's 
+                        performance using Kendall correlation, our main goal is to expand on the 
+                        explainability of why the GAT is or is not an ideal model to predict 
+                        routing congestion. ...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container reveal">
+          <h2>Data</h2>
+          <div class="text-container">
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    <section>
+        <div class="container reveal">
+            <h2>Background</h2>
+            <div class="text-container">
+                <div class="text-box">
+                    <p>In modern Very Large Scale Integration (VLSI) design, congestion poses a 
+                        significant threat to the development process of semiconductor chip 
+                        development. Currently, congestion is unknown until after placement and 
+                        routing steps in the design process. This is inefficient and costly, as 
+                        any weaknesses in the placement and routing process resulting in high 
+                        congestion must be reiterated to improve the quality of the design.
+                        In this work, we use a graph attention network (GAT) to predict the post
+                        -placement, pre-routing congestion levels in a netlist, in an attempt to 
+                        preemptively address potential issues. While we test our model's 
+                        performance using Kendall correlation, our main goal is to expand on the 
+                        explainability of why the GAT is or is not an ideal model to predict 
+                        routing congestion. ...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container reveal">
+          <h2>Methods</h2>
+          <div class="text-container">
+            <div class="text-box">
+              <h3>Pre-Processing Data</h3>
+              <p>
+                We have chosen to work with the DigIC dataset that we received last 
+                quarter from our mentors. When pre-processing our data, we generate the 
+                connectivity graph to be passed into our model. The DigIC dataset 
+                provides us with connectivity data as an incidence matrix, so we use 
+                that to generate the connectivity graph. Next, we split the data into 
+                training and validation sets. \cite{congestionnet} partition the graph 
+                by function for generalization purposes; however, we pivot from this 
+                method, as our data is not provided to us by function. Instead, we split 
+                our data randomly into 70\% training and 30\% validation. We concluded 
+                that a random split would be the most efficient for our purposes, since 
+                it reduces dependencies within nodes. Finally, we define congestion as 
+                routing capacity subtracted from the total routing demand in a global 
+                routing cell (GRC). A GRC is a representation of a chip in a 2-D space, 
+                which is then divided into blocks or regions, each defined as a GRC. 
+                Each GRC contains a number of nodes and wires, which helps us to 
+                understand the netlist on a local perspective. Our definition of 
+                congestion, because we are generalizing individual nodes to a GRC with 
+                multiple nodes, can be limiting, but is overall a sufficient method to 
+                efficiently differentiate congestion levels by region.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Our Model</h3>
+              <p>
+                We employ a Graph Neural Network (GNN) tailored to the intricacies of 
+                VLSI design to predict congestion. A GNN is a form of artificial neural 
+                network used to capture graph-structured data, and are useful in tasks 
+                such as node classification, link prediction, and graph-level prediction. 
+                In particular, we focus on the eight layer Graph Attention Network (GAT) 
+                architecture proposed by \cite{congestionnet} in “CongestionNet: Routing 
+                Congestion Prediction Using Deep Graph Neural Networks”. The GAT model 
+                originates from \cite{gat}, and is a variant of the GNN. GATs have an 
+                additional attention layer, which assigns attention scores for nodes and 
+                their neighbors, resulting in a weighted message passing for important 
+                nodes. This weighted feature allows for a more complex and nuanced 
+                understanding of graph data, with local and global routing representations. 
+                This method stood out as one that seemed both fast and effective, 
+                utilizing the topological properties of circuit data to make quick, 
+                accurate predictions.<br>
+                We are using normalized xloc, normalized yloc, instance pin count, GRC pin 
+                count, GRC cell count, normalized height, and normalized width as our 
+                features. These not only intuitively and make sense in affecting the demand 
+                of routing wires in a GRC, we also use Pearson correlation coefficient to 
+                validate our decision of utilizing these features in our model. In this 
+                paper, we have decided to employ congestion as the sum of congestion values 
+                for each GRC across all of the layers. This congestion value is then 
+                assigned to each node in the GRC. Although each area of the GRC does not 
+                have exactly the same value of congestion, this simplifies the process and 
+                is time-efficient for our purposes of generalizing to each GRC. 
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Testing</h3>
+              <p>
+                We will be assessing our model's effectiveness by comparing it to both 
+                other approaches taken on the DigIC data as well as the Kendall correlation 
+                numbers in the paper. Kendall correlation works well with large sample sizes 
+                as well as data with outliers. This way, we can assess both the 
+                effectiveness of the model relative to other methods as well as the 
+                generalizability of the model on datasets not used by \cite{congestionnet}.<br>
+                In addition to the assessment of the effectiveness of the CongestionNet 
+                approach, we will implement an explainability component in our project. 
+                After thoroughly working with our model, we hope to be able to look at 
+                different circuits we used in the dataset to infer and explain some of the 
+                shortcomings in the model. We will attempt to find connections between our 
+                extracted features and functions of the circuits beforehand and the theory 
+                behind the GAT. In addition to this, we propose a simple ablation study, 
+                where we take out some of the features that we use to assess their 
+                importance to model performance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section>
+        <div class="container reveal">
+          <h2>Results</h2>
+          <div class="text-container">
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container reveal">
+          <h2>Conclusion</h2>
+          <div class="text-container">
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+            <div class="text-box">
+              <h3>Section Text</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container reveal">
+          <h2>Future Work</h2>
+          <div class="text-container">
+            <div class="text-box">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                eius molestiae perferendis eos provident vitae iste.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 </body>
 </html>
