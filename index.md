@@ -30,4 +30,4 @@ Our study explores the use of deep learning techniques for early congestion pred
 * Pre-Routing
 
 Our project repository can be accessed at: <br>
-https://github.com/lisasunhwang/Capstone-B07-3
+[GitHub Repo](https://github.com/lisasunhwang/Capstone-B07-3)
