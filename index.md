@@ -1,14 +1,22 @@
-# Abstract
-In modern Very Large-Scale Integration (VLSI) chipdesign, congestion poses a significant challenge to the development process of semiconductor chip development. Currently, congestion is unknown until after placement and routing steps in the design process. This is inefficient and costly, as any weaknesses in the placement and routing process resulting in high congestion must be reiterated to improve the quality of the design. Predicting congestion early can expedite optimization efforts and enhance overall design efficiency. In this work, we explore the feasibility of leveraging deep learning techniques to predict local congestion prior to the routing stage. Using a digital integrated circuit (DigIC), we employ a Graph Attention Network (GAT) to predict the post-placement, pre-routing congestion levels in a netlist, in an attempt to preemptively address potential issues. Our analysis includes exploratory data analysis to understand key factors influencing congestion, pre-processing steps to prepare the data for implementation, and model training and testing using both GATs and a baseline extreme gradient boosting (XGBoost) model. Our results indicate that our GAT model, particularly when incorporating engineered features, outperforms the XGBoost model in learning patterns in graph data. While the XGBoost model exhibits better accuracy in assigning demand values to chip regions, the GAT model provides insights into the underlying patterns of congestion. Our findings highlight the potential of deep learning approaches for early congestion prediction in VLSI chip design.
-
 # Introduction
-In a world powered by technology, chip manufacturers are constantly pushing the boundaries, trying to optimize resources to create the most efficient and least costly chips possible. In Very Large-Scale Integration (VLSI) chip design, an issue that continuously arises is routing congestion, where the demand of wires exceeds the amount that an area can handle. This can result in routing detours, under-utilization of regions in the chip, higher chip area, longer wires, and overall an inefficient use of resources. Currently, congestion is only able to be accurately calculated after the routing process, resulting in a re-iteration through the design flow if the congestion is problematic to the functionality of the chip (Figure 1). Becoming aware of congestion early in the design process allows designers to alter logic, logic structures, and overall allows more iterations of designs to be tested in a shorter period of time.
+Congestion in Very Large-Scale Integration (VLSI) chip design presents a significant challenge, often discovered only after the placement and routing stages. Our project aims to predict congestion early using deep learning techniques, specifically a Graph Attention Network (GAT), to enhance chip design efficiency.
 
-**Question 2** <br>
-* A potential investigation I would like to pursue for my Quarter 2 Project would be optimization of timing in placement/routing of gates.
+# Problem Statement
+We seek to predict local congestion within semiconductor chips prior to routing, aiming to minimize the need for costly reiterations in the design process. Our focus is on identifying key factors influencing congestion to facilitate optimal chip placement and routing.
 
-**Question 3** <br>
-* A potential change to my current Quarter 1 Project would be to reproduce the experiment we are looking at on a smaller scale rather than a larger scale. How is the functionality improved/worsened by decreasing the scale?
+# Methods
+Our approach involves exploratory data analysis (EDA) to understand the dataset, pre-processing data for model implementation, and training/testing our GAT model alongside a baseline XGBoost model. We engineer features such as coordinates, width, and pin count to enhance congestion prediction.
 
-**Question 4** <br>
-* I would be interested in learning more about message passing techniques to implement in congestion optimization.
+# Results
+Experiments show that our GAT model, particularly with engineered features, outperforms the XGBoost model in learning congestion patterns. While XGBoost excels in assigning demand values accurately, the GAT model provides insights into congestion patterns, paving the way for more efficient chip design.
+
+# Conclusion
+Our study explores the use of deep learning techniques for early congestion prediction in VLSI chip design. By leveraging GAT models with engineered features, we aim to improve chip design efficiency and contribute valuable insights to the field.
+
+## Index Terms
+* Very Large-Scale Integration
+* Routing Congestion
+* Deep Learning
+* Graph Attention Network
+* Post-Placement
+* Pre-Routing
