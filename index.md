@@ -28,3 +28,6 @@ Our study explores the use of deep learning techniques for early congestion pred
 * Graph Attention Network
 * Post-Placement
 * Pre-Routing
+
+Our project repository can be accessed at: <br>
+https://github.com/lisasunhwang/Capstone-B07-3
