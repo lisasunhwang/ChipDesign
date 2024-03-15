@@ -1,5 +1,6 @@
 # Introduction
 Congestion in Very Large-Scale Integration (VLSI) chip design presents a significant challenge, often discovered only after the placement and routing stages. Our project aims to predict congestion early using deep learning techniques, specifically a Graph Attention Network (GAT), to enhance chip design efficiency.
+![design flow](assets/designflow.png)
 
 # Problem Statement
 We seek to predict local congestion within semiconductor chips prior to routing, aiming to minimize the need for costly reiterations in the design process. Our focus is on identifying key factors influencing congestion to facilitate optimal chip placement and routing.
