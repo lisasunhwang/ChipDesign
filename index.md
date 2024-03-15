@@ -5,7 +5,7 @@ Congestion in Very Large-Scale Integration (VLSI) chip design presents a signifi
 
 # Problem Statement
 We seek to predict local congestion within semiconductor chips prior to routing, aiming to minimize the need for costly reiterations in the design process. Our focus is on identifying key factors influencing congestion to facilitate optimal chip placement and routing. Routing congestion occurs when the demand of wires in a given area exceeds the capacity. <br>
-![congestion](assets/congestion.png){:height="200px" width="200px"}
+![congestion](assets/congestion.png){:height="300px" width="300px" margin-left="auto" margin-right="auto"}
 *Congestion Depicted in a Netlist*
 
 # Methods
@@ -15,7 +15,7 @@ Our approach involves exploratory data analysis (EDA) to understand the dataset,
 
 # Results
 Experiments show that our GAT model, particularly with engineered features, outperforms the XGBoost model in learning congestion patterns. While XGBoost excels in assigning demand values accurately, the GAT model provides insights into congestion patterns, paving the way for more efficient chip design. <br>
-![heatmaps](assets/heatmaps.png){:height="200px" width="200px"}
+![heatmaps](assets/heatmaps.png){:height="400px" width="400px" margin-left="auto" margin-right="auto"}
 *Our Results*
 
 # Conclusion
